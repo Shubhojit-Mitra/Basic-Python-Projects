@@ -7,7 +7,6 @@ def create_file(file_name):
     file_path = os.getcwd() + '/' + file_name
     os.rename(file_path, file_path + '.py')
 
-
 def edit_file(file_name):
     while True:
         print("\nChoose your editor: \n1. Nano\n2. Vim\n3. Code\n")
