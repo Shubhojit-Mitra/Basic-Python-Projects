@@ -1,3 +1,5 @@
+import csv
+import os
 
 # An Exception class for AgeNotValidError: Age should be greater than or equal to 18.
 class AgeNotValidError(Exception):
@@ -28,7 +30,25 @@ class BankAccount:
             raise AgeNotValidError("Age should be greater than or equal to 18.")
         
         # If the age is greater than or equal to 18, then the account is created successfully.
-        print("\nCongratulations! Your account has been created successfully! ")
+        print("\nCongratulations! Your account has been created successfully! 🥳🥳🥳 🤑🤑🤑")
+
+    
+    # Method to store the owner details in a CSV file.
+    def StoreOwnerDetails(self, filename: str) -> None:
+        try:
+            directory = os.path.dirname(os.path.abspath(__file__))  # Get the directory path of the current file.
+            # Create the full file path by joining the directory path and the filename.
+            filepath = os.path.join(directory, filename)
+            with open(filepath, 'w', newline='') as file:           # Open the CSV file in write mode.
+                writer = csv.writer(file)                           # Create a CSV writer object.        
+                writer.writerow(['Name', 'Age', 'Phone'])           # Write the header row.
+                # Write the owner details row.
+                writer.writerow([self.OwnerDetails['Name'], self.OwnerDetails['Age'], self.OwnerDetails['Phone']])
+            
+            print(f"\n{self.OwnerDetails['Name']} details have been stored in the file: {filename} Successfully! ✅")
+        except Exception as error:
+            print(f"\nError occurred while storing the owner details: {error} ❌")
+    
 
     # Method to display the account details.
     def AccountDetails(self) -> None:
