@@ -71,6 +71,9 @@ if __name__ == "__main__":
     acc3.Deposit(2000) 
 
     acc4 = SavingsAccount("6875400004", 4000, owners[3])
+    acc4.StoreOwnerDetails(filename)
+    acc4.CreateBankStatements()
+
     acc4.Deposit(2000)
     acc4.Withdraw(1000)
     

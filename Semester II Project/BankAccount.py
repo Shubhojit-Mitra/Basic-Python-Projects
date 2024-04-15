@@ -57,12 +57,19 @@ class BankAccount:
             directory = os.path.dirname(os.path.abspath(__file__))  # Get the directory path of the current file.
             # Create the full file path by joining the directory path and the filename.
             filepath = os.path.join(directory, filename)
-            with open(filepath, 'w', newline='') as file:           # Open the CSV file in write mode.
-                writer = csv.writer(file)                           # Create a CSV writer object.        
-                writer.writerow(['Name', 'Age', 'Phone'])           # Write the header row.
-                # Write the owner details row.
-                writer.writerow([self.OwnerDetails['Name'], self.OwnerDetails['Age'], self.OwnerDetails['Phone']])
-            
+            if os.path.exists(filepath):                             # If the file already exists, then remove the file.
+                with open(filepath, 'a', newline='') as file:       # Open the CSV file in append mode.
+                    writer = csv.writer(file)                       # Create a CSV writer object.
+                    # Write the owner details row.
+                    writer.writerow([self.OwnerDetails['Name'], self.OwnerDetails['Age'], self.OwnerDetails['Phone'], f"{self.AccType}"])
+                
+            else:
+                with open(filepath, 'w', newline='') as file:           # Open the CSV file in write mode.
+                    writer = csv.writer(file)                           # Create a CSV writer object.        
+                    writer.writerow(['Name', 'Age', 'Phone', 'Account Type'])           # Write the header row.
+                    # Write the owner details row.
+                    writer.writerow([self.OwnerDetails['Name'], self.OwnerDetails['Age'], self.OwnerDetails['Phone'], f"{self.AccType}"])
+                
             print(f"\n{self.OwnerDetails['Name']} details have been stored in the file: {filename} Successfully! ✅")
         except Exception as error:
             print(f"\nError occurred while storing the owner details: {error} ❌")
