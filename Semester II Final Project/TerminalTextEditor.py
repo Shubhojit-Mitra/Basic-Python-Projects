@@ -2,7 +2,7 @@
 import os           # OS module for running terminal commands
 import subprocess   # Subprocess module for running terminal commands
 
-# FileDoesNotExistsError Exception is raised when a file does not exist
+# FileDoesNotExistsError Exception is raised when a file does not exist``
 class FileDoesNotExistsError(Exception):
     pass
 
@@ -23,6 +23,13 @@ class TerminalTextEditor:
     
     # method used to get the extension based on fileType of the Object
     def get_extension(self) -> str:
+        """
+        Returns the file extension based on the specified fileType.
+
+        Returns:
+            str: The file extension corresponding to the fileType.
+        """
+
         if self.fileType == 'textfile': return '.txt'
         elif self.fileType == 'python programming': return '.py'
         elif self.fileType == 'C programming': return '.c'
@@ -30,6 +37,12 @@ class TerminalTextEditor:
         
     # Method to create a new file with filename and extension
     def CreateFile(self) -> None:
+        """
+        Creates a new file with the specified filename and extension.
+        
+        Raises:
+            IOError: If there is an error creating the file.
+        """
         try:
             # Creating new file with 'Write' mode and writing a first line comment
             with open(self.filename, 'w') as file:
@@ -49,6 +62,16 @@ class TerminalTextEditor:
         
     # Method to edit an existing file with text editor of choice
     def EditFile(self, editor: str) -> None:
+        """
+        Opens the file in the specified text editor for editing.
+
+        Args:
+            editor (str): The name of the text editor to use.
+
+        Raises:
+            FileDoesNotExistsError: If the file does not exist.
+
+        """
         try:
             # runs terminal command to open a text editor of choice and edit the file
             os.system(f"{editor} {self.filename}{self.extension}")
@@ -57,6 +80,13 @@ class TerminalTextEditor:
 
     # Method to delete a file
     def DeleteFile(self) -> None:
+        """
+        Deletes the file with the given filename and extension.
+
+        Raises:
+            FileDoesNotExistsError: If the file does not exist.
+
+        """
         try:
             # Deletes the file if exists
             os.remove(self.filename + self.extension)
@@ -78,6 +108,17 @@ class TerminalPythonEditor(TerminalTextEditor):
 
     # Method to run the python file in the terminal
     def RunPythonFile(self) -> None:
+        """
+        Runs the Python file specified by `self.filename`.
+
+        This method uses the `subprocess` module to execute the Python file in a separate process.
+
+        Parameters:
+            None
+
+        Returns:
+            None
+        """
         subprocess.call(['python3', f'{self.filename}.py'])     # Subprocess call to run python3 filename.py
 
 
@@ -96,11 +137,28 @@ class TerminalCProgramEditor(TerminalTextEditor):
 
     # Method to run the C program in the terminal
     def RunCProgramFile(self) -> None:
+        """
+        Compiles and runs the C program file.
+
+        This method uses the `gcc` command to compile the C program file with the given filename.
+        It then executes the compiled program using the `os.system` function.
+
+        Note: The C program file should have the same name as the `filename` attribute.
+
+        Returns:
+            None
+        """
         subprocess.call(['gcc', f'{self.filename}.c'])      # Subprocess to compile the C program using gcc
         os.system('./a.out')                                # executes the a.out file from os.system
 
     # Method to delete the C program file
     def DeleteFile(self) -> None:
+        """
+        Deletes the file associated with the TerminalTextEditor instance.
+
+        Raises:
+            FileDoesNotExistsError: If the file does not exist.
+        """
         try:
             os.remove(self.filename + self.extension)                       # Deletes the C program file
             if os.path.exists('a.out'): os.remove('a.out')                  # Deletes the output file if exists
