@@ -112,6 +112,7 @@ class TerminalCProgramEditor(TerminalTextEditor):
     
 
 if __name__ == '__main__':
+
     filename = "testingText"
 
     fileObject = TerminalPythonEditor(filename, fileType='python programming')

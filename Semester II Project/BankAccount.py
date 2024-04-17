@@ -10,7 +10,6 @@ class AgeNotValidError(Exception):
 
 # An Exception class for InsufficientBalanceError: If the balance is less than the amount to be withdrawn or transferred InsufficientBalanceError is raised.
 class InsufficientBalanceError(Exception):
-    print("hello World")
     pass
 
 class BankAccount:
