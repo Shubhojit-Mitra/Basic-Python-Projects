@@ -31,8 +31,8 @@ class TerminalTextEditor:
         """
 
         if self.fileType == 'textfile': return '.txt'
-        elif self.fileType == 'python programming': return '.py'
-        elif self.fileType == 'C programming': return '.c'
+        elif self.fileType == 'python-programming': return '.py'
+        elif self.fileType == 'C-programming': return '.c'
         else: return '.txt'                         # Returns .txt extension by default if fileType not specified
         
     # Method to create a new file with filename and extension
@@ -173,10 +173,24 @@ if __name__ == '__main__':
 
     filename = "testingText"
 
-    fileObject = TerminalPythonEditor(filename, fileType='python programming')
-    # fileObject.CreateFile()
-    # fileObject.EditFile('nano')
-    # fileObject.RunPythonFile()
-    # fileObject.DeleteFile()
+    fileObject1 = TerminalPythonEditor(filename, fileType='python-programming')
+    # fileObject2 = TerminalCProgramEditor(filename, fileType='C-programming')
+    # fileObject3 = TerminalTextEditor(filename, fileType='textfile')
+
+    # fileObject1.CreateFile()
+    # fileObject2.CreateFile()
+    # fileObject3.CreateFile()
+
+    # fileObject1.EditFile('nano')
+    # fileObject2.EditFile('vi')
+    # fileObject3.EditFile('gedit')
+
+    # fileObject1.RunPythonFile()
+    # fileObject2.RunPythonFile()
+    # fileObject3.RunPythonFile()
+
+    # fileObject1.DeleteFile()
+    # fileObject2.DeleteFile()
+    # fileObject3.DeleteFile()
 
 
